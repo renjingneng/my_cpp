@@ -1,7 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <functional>
+#include <chrono>
+#include <thread>
 
+template<class... Args>
+void print(Args&&... args)
+{
+	(std::cout << ... << args) << std::endl;
+}
+
+#define LOG_HELPER(...) \
+	print(__VA_ARGS__);
+
+#define LOG_DEBUG(...) LOG_HELPER("LOG_DEBUG",__FUNCTION__,__VA_ARGS__);
+
+#define Sleep(_ms) std::this_thread::sleep_for(std::chrono::milliseconds(_ms));
 
 template <typename T>
 using func_template = T(T);//function signature
@@ -162,8 +176,9 @@ int main()
 		//http://www.vishalchovatiya.com/cpp-type-casting-with-example-for-c-developers/
 	}
 
-
-
+	std::cout << "/****others****/" << std::endl;
+	Sleep(1000);
+	LOG_DEBUG( "test2");
 	std::cout << "/****!!END!!****/" << std::endl;
 	return 0;
 }
