@@ -4,16 +4,16 @@ int cnt(char *s)
 {
     int i = 0, c = 0;
     if (s)
-    {
+    
         while (*(s + i))
         {
             if (s[i] == 'B' || *(s + i) == 'b')
-            {
+            
                 c++;
-            }
+            
             i++;
         }
-    }
+    
     return c;
 }
 
